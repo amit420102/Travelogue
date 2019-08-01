@@ -1,0 +1,69 @@
+<template name="yellowstone">
+
+  <!-- below FB SDK is needed to embed the FB page feed on website-->
+
+  <div id="fb-root">
+  </div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=499810610845119&autoLogAppEvents=1">
+  </script>
+  <!-- ends here-->
+
+  <div class="container">
+
+    <div class="row">
+        <h4>Yellowstone National Park!</h4>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <h4>Weekly weather forecast</h4>
+        {{> yellowstone_weather_info}}
+    </div>
+    
+    <br>
+
+    <div class="row">
+      
+      <div class="col-md-6">
+            <h4>Facebook posts!</h4>
+            {{> yellowstone_fb_info}}
+      </div>
+
+      <div class="col-md-6">
+              <h4>Twitter feed!</h4>
+              {{> yellowstone_twitter_info}}
+      </div>
+
+    </div>
+
+  </div>
+</template>
+
+<template name="yellowstone_twitter_info">
+    <a class="twitter-timeline" href="https://twitter.com/YellowstoneNPS?ref_src=twsrc%5Etfw" data-height="1000px">
+      Tweets by YellowstoneNPS
+    </a> 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+    </script>
+</template>
+
+<template name="yellowstone_fb_info">
+  
+  <div style="width: 500px;">
+      <div class="fb-page" data-href="https://www.facebook.com/yellowstonenps" data-tabs="timeline, events" data-width="500px" data-height="1000px" 
+            data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/yellowstonenps" class="fb-xfbml-parse-ignore">
+          <a href="https://www.facebook.com/yellowstonenps">
+            Yellowstone National Park
+          </a>
+        </blockquote>
+      </div>
+  </div>
+</template>
+
+<template name="yellowstone_weather_info">
+    <div id="cont_096e80463d751d67610f1801eb6f89ad">
+      <script type="text/javascript" async src="https://www.theweather.com/wid_loader/096e80463d751d67610f1801eb6f89ad"></script>
+    </div>
+</template>

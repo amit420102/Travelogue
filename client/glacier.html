@@ -1,0 +1,68 @@
+<template name="glacier">
+
+  <!-- below FB SDK is needed to embed the FB page feed on website-->
+
+  <div id="fb-root">
+  </div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=499810610845119&autoLogAppEvents=1">
+  </script>
+  <!-- ends here-->
+
+  <div class="container">
+
+    <div class="row">
+        <h4>Glacier National Park!</h4>
+    </div>
+
+    <br>
+    
+    <div class="row">
+        <h4>Weekly weather forecast</h4>
+        {{> glacier_weather_info}}
+    </div>
+    
+    <br>
+
+    <div class="row">
+      
+      <div class="col-md-6">
+            <h4>Facebook posts!</h4>
+            {{> glacier_fb_info}}
+      </div>
+
+      <div class="col-md-6">
+              <h4>Twitter feed!</h4>
+              {{> glacier_twitter_info}}
+      </div>
+
+    </div>
+
+  </div>
+</template>
+
+<template name="glacier_twitter_info">
+    <a class="twitter-timeline" href="https://twitter.com/GlacierNPS?ref_src=twsrc%5Etfw" data-height="1000px">
+      Tweets by GlacierNPS
+    </a> 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+    </script>
+</template>
+
+<template name="glacier_fb_info">
+  <div style="width: 500px;">
+      <div class="fb-page" data-href="https://www.facebook.com/glaciernps" data-tabs="timeline, events" data-width="500px" data-height="1000px" 
+            data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/glaciernps" class="fb-xfbml-parse-ignore">
+          <a href="https://www.facebook.com/glaciernps">
+            Glacier National Park
+          </a>
+        </blockquote>
+      </div>
+  </div>
+</template>
+
+<template name="glacier_weather_info">
+    <div id="cont_4139ed91ec52f7d50a60e26043491572">
+      <script type="text/javascript" async src="https://www.theweather.com/wid_loader/4139ed91ec52f7d50a60e26043491572"></script>
+    </div>
+</template>

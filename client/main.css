@@ -1,0 +1,25 @@
+.nav-pad{
+  padding-right: 10px;
+}
+
+.img-display{
+  max-width: 100%;
+}
+
+body {
+  background-color: whitesmoke;
+  font-family: sans-serif;
+}
+
+.carousel-inner{
+  height: 600px;
+  width: 100%;
+}
+
+.carousel-img{
+  max-height: 600px;
+  width: 100%;
+}
+
+
+
