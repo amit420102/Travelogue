@@ -13,14 +13,19 @@ user can navigate to the folder where the project is kept and type meteor on the
 
 # Packages:
 Apart from standard meteor packages that come with meteor i have used below packages:
-accounts-ui
+accounts-ui 
+
 accounts-password
+
 iron:router
+
 session
+
 twbs:bootstrap
 
 # Collections:
 messages - this has been created for chat functionality
+
 users - this is created for user login
 
 # Key processes:
