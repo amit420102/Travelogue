@@ -21,5 +21,47 @@ body {
   width: 100%;
 }
 
+.chat_list{
+  border-radius: 25px;
+  border: 1px solid lightblue;
+  padding: 10px; 
+  background-color: white;
+}
 
+.chat_list_logged_user{
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 10px; 
+  background-color: rgb(171, 241, 161);
+}
+
+i.fa.fa-facebook, i.fa.fa-twitter, i.fa.fa-instagram, i.fa.fa-at{
+  border-radius: 100%;
+  font-size: 28px;
+  height: 38px;
+  line-height: 40px;
+  margin: 5px;
+  text-align: center;
+  width: 38px;
+}
+
+i.fa.fa-facebook{
+  border: 1px solid #3B5998;
+  color: #3B5998;
+}
+
+i.fa.fa-twitter{
+  border: 1px solid #00aced;
+  color: #00aced;
+}
+
+i.fa.fa-instagram{
+  border: 1px solid #833ab4;
+  color: #833ab4;
+}
+
+i.fa.fa-at{
+  border: 1px solid #f5514b;
+  color: #f5514b;
+}
 

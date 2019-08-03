@@ -98,9 +98,14 @@ if (Meteor.isClient){
             if (Meteor.user()){
                 messageNickname = Meteor.user().username;
             }
+
+            var nick = messageNickname.split("@")[0];
+
             var message = {messageText:messageText,
-                            nickname:messageNickname,
-                            createdOn:new Date()};
+                            nickname:nick,
+                            email: messageNickname,
+                            createdOn:new Date()
+                            };
 
             // call the meteor method to insert the row in database
             
@@ -122,7 +127,9 @@ if (Meteor.isClient){
                 Session.set('messageNickname', Meteor.user().username);
                 
             }
-            return Session.get('messageNickname');
+            var email = Session.get('messageNickname');
+            var nick = email.split("@")[0];
+            return nick;
         },
     });
 
@@ -132,6 +139,17 @@ if (Meteor.isClient){
         // messgaeList template
         messages:function(){
             return Messages.find({}, {sort: {createdOn: -1}})
-        }
+        },
+        logged_user:function(email){
+            if(Meteor.user().username == email){
+                console.log(Meteor)
+                return true;    
+            }
+            else{
+                return false;    
+            }
+        },
+
     });
+
 }

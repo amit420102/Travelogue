@@ -10,14 +10,21 @@
     
     <template name="messageList">
         {{#each messages}}
-            {{>messageItem}}
+            {{#if logged_user email}}
+            <div class="col-md-6 col-md-offset-6 chat_list_logged_user">
+                {{nickname}} ({{createdOn}}) :
+                <h4>{{messageText}}</h4>
+            </div>
+            {{else}}
+            <div class="col-md-6 chat_list">
+                {{nickname}} ({{createdOn}}) :
+                <h4>{{messageText}}</h4>
+            </div>
+            {{/if}}
         {{/each}}
     </template>
     
-    <template name="messageItem">
-        <h4>{{nickname}} : {{createdOn}} - {{messageText}}</h4>
-    </template>
-    
+   
     <template name="messageForm">
         <div class="form-group">
             <label for="message-text-input">Message:</label>
