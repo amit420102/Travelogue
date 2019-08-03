@@ -9,6 +9,7 @@
 body {
   background-color: whitesmoke;
   font-family: sans-serif;
+  padding: 10px;
 }
 
 .carousel-inner{
@@ -65,3 +66,6 @@ i.fa.fa-at{
   color: #f5514b;
 }
 
+.login-link-text{
+  color: rgb(173, 171, 171);
+}

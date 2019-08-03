@@ -114,6 +114,7 @@ if (Meteor.isClient){
                 if (!res){
                     alert('You need to log in!');
                 }
+                document.getElementById("message-text-input").value = "";
             });
 
         }

@@ -10,17 +10,21 @@
     
     <template name="messageList">
         {{#each messages}}
-            {{#if logged_user email}}
-            <div class="col-md-6 col-md-offset-6 chat_list_logged_user">
-                {{nickname}} ({{createdOn}}) :
-                <h4>{{messageText}}</h4>
+            
+            <div class="row">
+                {{#if logged_user email}}
+            
+                <div class="col-md-6 col-md-offset-6 chat_list_logged_user">
+                    {{nickname}} ({{createdOn}}) :
+                    <h4>{{messageText}}</h4>
+                </div>
+                {{else}}
+                <div class="col-md-6 chat_list">
+                    {{nickname}} ({{createdOn}}) :
+                    <h4>{{messageText}}</h4>
+                </div>
+                {{/if}}
             </div>
-            {{else}}
-            <div class="col-md-6 chat_list">
-                {{nickname}} ({{createdOn}}) :
-                <h4>{{messageText}}</h4>
-            </div>
-            {{/if}}
         {{/each}}
     </template>
     
@@ -31,6 +35,5 @@
             <input type="text" class="form-control" id="message-text-input" placeholder="Type message here...">
             <br>
             <button type="submit" class="btn btn-primary js-save-message">Post!</button>
-    
         </div>
     </template>
