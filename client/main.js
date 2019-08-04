@@ -6,6 +6,7 @@ import './bryce.html'
 import './glacier.html'
 import './yellowstone.html'
 import './chat.html'
+import './alerts.html'
 import '../lib/collections.js'
 
 Meteor.subscribe("messages");
@@ -51,6 +52,12 @@ Router.route('/chat', function(){
     //console.log("rendering chat");
     this.render('navbar', {to:"header"});
     this.render('chat', {to:"main"});
+});
+
+Router.route('/alerts', function(){
+    //console.log("rendering chat");
+    this.render('navbar', {to:"header"});
+    this.render('alerts', {to:"main"});
 });
 
 //below pieces of codes are added for each of the templates so that facebbok java script is loaded everytime the page is rendered
@@ -143,7 +150,6 @@ if (Meteor.isClient){
         },
         logged_user:function(email){
             if(Meteor.user().username == email){
-                console.log(Meteor)
                 return true;    
             }
             else{
@@ -151,6 +157,58 @@ if (Meteor.isClient){
             }
         },
 
+    });
+
+    Template.alert_template.helpers({
+        // call the meteor method to get the JSON data from NPS API
+        
+        alertdata:function(){
+            Meteor.call('getalert', function(err, res){
+                //console.log(err);
+                if (!res){
+
+                    alert('error fetching the data from NPS website');
+                }
+                
+                var i;
+                var hold_park = ""
+                for (i = 0; i < res.data.length; i++) { 
+                    //console.log(res.data[i].description);
+                    if (res.data[i].parkCode == hold_park){
+                        document.getElementById("alertrow").innerHTML += 
+                        "<li>"+ res.data[i].description + "</li>";
+                    }
+                    else {
+                        if(res.data[i].parkCode == 'arch'){
+                            document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<H4>" + "Arches NPS" + "</H4>"  + "<ul>"; 
+                            hold_park = 'arch';   
+                        }
+                        if(res.data[i].parkCode == 'brca'){
+                            document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Bryce NPS" + "</h4>" + "<ul>";    
+                            hold_park = 'brca'
+                        }
+                        if(res.data[i].parkCode == 'glac'){
+                            document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Glacier NPS" +  "</h4>" + "<ul>";    
+                            hold_park = 'glac';
+                        }
+                        if(res.data[i].parkCode == 'yell'){
+                            document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Yellowstone NPS" + "</h4>" + "<ul>";    
+                            hold_park = 'yell';
+                        }
+
+                        document.getElementById("alertrow").innerHTML += "<li>" + res.data[i].description 
+                        + "</li>" ;
+                    }
+                    
+                }
+
+                return true;
+            });
+        },
     });
 
 }

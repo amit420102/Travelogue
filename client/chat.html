@@ -6,9 +6,9 @@
 
 <template name="header">
         <h1>Welcome to Travelogue {{nickname}}</h1>
-    </template>
+</template>
     
-    <template name="messageList">
+<template name="messageList">
         {{#each messages}}
             
             <div class="row">
@@ -26,14 +26,14 @@
                 {{/if}}
             </div>
         {{/each}}
-    </template>
+</template>
     
    
-    <template name="messageForm">
+<template name="messageForm">
         <div class="form-group">
             <label for="message-text-input">Message:</label>
             <input type="text" class="form-control" id="message-text-input" placeholder="Type message here...">
             <br>
             <button type="submit" class="btn btn-primary js-save-message">Post!</button>
         </div>
-    </template>
+</template>
