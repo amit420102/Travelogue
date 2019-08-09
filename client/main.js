@@ -178,6 +178,10 @@ if (Meteor.isClient){
 
                 var i;
                 var hold_park = ""
+                var data_arches = false;
+                var data_bryce = false;
+                var data_glacier = false;
+                var data_yellowstone = false;
                 for (i = 0; i < res.data.length; i++) { 
 
                     if (res.data[i].parkCode == hold_park){
@@ -189,21 +193,39 @@ if (Meteor.isClient){
                             document.getElementById("alertrow").innerHTML += 
                             "<br>" + "<H4>" + "Arches NPS" + "</H4>"  + "<ul>"; 
                             hold_park = 'arch';   
+                            data_arches = true;
                         }
                         if(res.data[i].parkCode == 'brca'){
+                            if(!data_arches){
+                                document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Arches NPS - No Alerts for today" + "</h4>";
+                            };
+
                             document.getElementById("alertrow").innerHTML += 
                             "<br>" + "<h4>" + "Bryce NPS" + "</h4>" + "<ul>";    
-                            hold_park = 'brca'
+                            hold_park = 'brca';
+                            data_bryce = true;
                         }
                         if(res.data[i].parkCode == 'glac'){
+                            if(!data_bryce){
+                                document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Bryce NPS - No Alerts for today" + "</h4>";
+                            }
+
                             document.getElementById("alertrow").innerHTML += 
                             "<br>" + "<h4>" + "Glacier NPS" +  "</h4>" + "<ul>";    
                             hold_park = 'glac';
+                            data_glacier = true;
                         }
                         if(res.data[i].parkCode == 'yell'){
+                            if(!data_glacier){
+                                document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Glacier NPS - No Alerts for today" + "</h4>";
+                            }
                             document.getElementById("alertrow").innerHTML += 
                             "<br>" + "<h4>" + "Yellowstone NPS" + "</h4>" + "<ul>";    
                             hold_park = 'yell';
+                            data_yellowstone = true;
                         }
 
                         document.getElementById("alertrow").innerHTML += "<li>" + res.data[i].description 
@@ -211,87 +233,12 @@ if (Meteor.isClient){
                     }
                     
                 }
+                if(!data_yellowstone){
+                    document.getElementById("alertrow").innerHTML += 
+                            "<br>" + "<h4>" + "Yellowstone NPS - No Alerts for today" + "</h4>";
+                }
                 
             });
         },
     });
-
-/*
-    Template.glac_alert.helpers({
-
-        glac_data: Session.get('glac_response')
-
-    });
-
-    Template.arch_alert.helpers({
-
-        arch_data: Session.get('arch_response')
-
-    });
-
-    Template.brca_alert.helpers({
-
-        brca_data: Session.get('brca_response')
-
-    });
-
-    Template.yell_alert.helpers({
-
-        yell_data: Session.get('yell_response')
-
-    });
-
-    Template.alerts.helpers({
-
-        get_all_data: function(){
-
-            Meteor.call('glacgetalert', function(err, glac_res){
-
-                if (!glac_res){
-
-                    alert('error fetching the data from Glacier NPS website');
-                }
-                
-                console.log(glac_res.data);
-                Session.set('glac_response', glac_res.data);
-            });
-            
-            Meteor.call('archgetalert', function(err, arch_res){
-
-                if (!arch_res){
- 
-                    alert('error fetching the data from Arches NPS website');    
-                }
-
-                console.log(arch_res.data);
-                Session.set('arch_response', arch_res.data);
-            });
-
-            Meteor.call('brcagetalert', function(err, brca_res){
-
-                if (!brca_res){
-
-                    alert('error fetching the data from Bryce NPS website');
-                }
-                
-                console.log(brca_res.data);
-                Session.set('brca_response', brca_res.data);
-            });
-
-            Meteor.call('yellgetalert', function(err, yell_res){
-
-                if (!yell_res){
-
-                    alert('error fetching the data from Yellowstone NPS website');
-                }
-                
-                console.log(yell_res.data);
-                Session.set('yell_response', yell_res.data);
-            });
-
-        },
-
-    });
-*/
-
 }
