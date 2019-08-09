@@ -23,16 +23,16 @@ body {
 }
 
 .chat_list{
-  border-radius: 25px;
+  border-radius: 10px;
   border: 1px solid lightblue;
-  padding: 10px; 
+  padding: 5px; 
   background-color: white;
 }
 
 .chat_list_logged_user{
-  border-radius: 25px;
+  border-radius: 10px;
   border: 1px solid black;
-  padding: 10px; 
+  padding: 5px; 
   background-color: rgb(171, 241, 161);
 }
 

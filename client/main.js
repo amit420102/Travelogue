@@ -84,7 +84,7 @@ Template.yellowstone.rendered = function(){
         FB.XFBML.parse(this.firstNode);
     }, 0);
 };
-
+ 
 
 if (Meteor.isClient){
 
@@ -146,6 +146,7 @@ if (Meteor.isClient){
         // this helper provides the list of messages for the
         // messgaeList template
         messages:function(){
+            
             return Messages.find({}, {sort: {createdOn: -1}})
         },
         logged_user:function(email){
@@ -159,21 +160,26 @@ if (Meteor.isClient){
 
     });
 
+
     Template.alert_template.helpers({
         // call the meteor method to get the JSON data from NPS API
         
         alertdata:function(){
+            
             Meteor.call('getalert', function(err, res){
-                //console.log(err);
+
                 if (!res){
 
                     alert('error fetching the data from NPS website');
                 }
                 
+                //console.log(res.data);
+                Session.set('response', res.data);
+
                 var i;
                 var hold_park = ""
                 for (i = 0; i < res.data.length; i++) { 
-                    //console.log(res.data[i].description);
+
                     if (res.data[i].parkCode == hold_park){
                         document.getElementById("alertrow").innerHTML += 
                         "<li>"+ res.data[i].description + "</li>";
@@ -205,10 +211,87 @@ if (Meteor.isClient){
                     }
                     
                 }
-
-                return true;
+                
             });
         },
     });
+
+/*
+    Template.glac_alert.helpers({
+
+        glac_data: Session.get('glac_response')
+
+    });
+
+    Template.arch_alert.helpers({
+
+        arch_data: Session.get('arch_response')
+
+    });
+
+    Template.brca_alert.helpers({
+
+        brca_data: Session.get('brca_response')
+
+    });
+
+    Template.yell_alert.helpers({
+
+        yell_data: Session.get('yell_response')
+
+    });
+
+    Template.alerts.helpers({
+
+        get_all_data: function(){
+
+            Meteor.call('glacgetalert', function(err, glac_res){
+
+                if (!glac_res){
+
+                    alert('error fetching the data from Glacier NPS website');
+                }
+                
+                console.log(glac_res.data);
+                Session.set('glac_response', glac_res.data);
+            });
+            
+            Meteor.call('archgetalert', function(err, arch_res){
+
+                if (!arch_res){
+ 
+                    alert('error fetching the data from Arches NPS website');    
+                }
+
+                console.log(arch_res.data);
+                Session.set('arch_response', arch_res.data);
+            });
+
+            Meteor.call('brcagetalert', function(err, brca_res){
+
+                if (!brca_res){
+
+                    alert('error fetching the data from Bryce NPS website');
+                }
+                
+                console.log(brca_res.data);
+                Session.set('brca_response', brca_res.data);
+            });
+
+            Meteor.call('yellgetalert', function(err, yell_res){
+
+                if (!yell_res){
+
+                    alert('error fetching the data from Yellowstone NPS website');
+                }
+                
+                console.log(yell_res.data);
+                Session.set('yell_response', yell_res.data);
+            });
+
+        },
+
+    });
+*/
 
 }

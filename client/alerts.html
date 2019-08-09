@@ -1,16 +1,61 @@
 <template name="alerts">
-  {{>alert_template}}
+  <div class="container">
+    {{>alert_template}}
+  </div>
 </template>
+
 
 <template name = "alert_template">
     <div class="container">
         <div class="row">
           <h1>Alerts:</h1>
         </div>
-        
+       
         <div class="row" id="alertrow">
-          {{alertdata}}
+            {{alertdata}}
         </div>
 
     </div>
 </template>
+
+<!--
+<template name="glac_alert">
+    <div class="row">
+      <ul>
+      {{#each glac_data}}
+        <li>{{description}}</li>
+      {{/each}}
+      </ul>
+    </div>
+</template>
+
+<template name="arch_alert">
+    <div class="row">
+      <ul>
+      {{#each arch_data}}
+        <li>{{description}}</li>
+      {{/each}}
+      </ul>
+    </div>
+</template>
+
+<template name="brca_alert">
+    <div class="row">
+      <ul>
+      {{#each brca_data}}
+        <li>{{description}}</li>
+      {{/each}}
+      </ul>
+    </div>
+</template>
+
+<template name="yell_alert">
+    <div class="row">
+      <ul>
+      {{#each yell_data}}
+        <li>{{description}}</li>
+      {{/each}}
+      </ul>
+    </div>
+</template> 
+-->
